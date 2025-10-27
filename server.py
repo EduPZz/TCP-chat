@@ -93,7 +93,6 @@ def digestMessage(data, clientId):
         clients[findClientIndex(clientId)]["nickname"] = messageDict["content"]
         print(f"User {messageDict['content']} connected!")
         
-        # Notify other clients about the new connection
         newUserNick = messageDict["content"]
         clientsToNotify = list(
             filter(lambda client: client["id"] != clientId, clients)

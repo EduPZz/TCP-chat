@@ -119,7 +119,10 @@ class TCPChat:
                 data = self.sock.recv(256)
                 if data:
                     message_dict = json.loads(data.decode())
-                    self.add_incoming_message(message_dict["content"])
+                    if message_dict["type"] == "system":
+                        self.add_system_message(message_dict["content"])
+                    elif message_dict["type"] == "incoming":
+                        self.add_incoming_message(message_dict["content"])
                 else:
                     break
             except:
